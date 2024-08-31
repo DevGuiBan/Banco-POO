@@ -20,13 +20,9 @@ public class Agenda {
         emailContato = sc.nextLine();
 
         Contato contatoCriadoParaAgenda = new Contato(numeroContato, telefoneContato, emailContato);
-        declararIdParaContato(contatoCriadoParaAgenda);
         adicionarContatoNaAgenda(contatoCriadoParaAgenda);
     }
 
-    public void declararIdParaContato(Contato contato){
-        contato.setId(contatosDaAgenda.length);
-    }
 
     public void adicionarContatoNaAgenda(Contato contato){
         for (int i = 0; i < contatosDaAgenda.length; i++) {
