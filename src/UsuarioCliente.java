@@ -11,7 +11,7 @@ public class UsuarioCliente extends Usuario{
         DadosDoBanco.UsuarioCliente.add(this);
     }
 
-    public static UsuarioCliente adicionarUsuario(){
+    public static UsuarioCliente adicionarCliente(){
 
         String[] adicionado = new String[3];
 
