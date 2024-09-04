@@ -83,7 +83,7 @@ public class Menu {
                     }
                     break;
                 case 4:
-                    if (cliente == null){
+                    if (gerente == null){
                         System.out.println("Cliente ainda não criado, criar antes de adicionar uma conta poupança!");
                     }else{
                         ContaPoupanca poupanca = new ContaPoupanca(cliente);
@@ -101,9 +101,6 @@ public class Menu {
     private static void listar(){
         Scanner input = new Scanner(System.in);
         boolean exibirAdicionar = true;
-
-        UsuarioCliente cliente = null;
-        UsuarioGerente gerente = null;
 
         while (exibirAdicionar) {
 
