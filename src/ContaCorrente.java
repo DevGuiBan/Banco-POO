@@ -9,6 +9,7 @@ public class ContaCorrente extends Conta{
     public ContaCorrente(UsuarioCliente usuario) {
         super(usuario);
         limite = BigDecimal.valueOf(500.0);
+        DadosDoBanco.ContaCorrente.add(this);
     }
 
     public BigDecimal getLimite() {

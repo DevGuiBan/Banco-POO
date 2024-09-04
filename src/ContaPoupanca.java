@@ -2,6 +2,7 @@ public class ContaPoupanca extends Conta{
 
     public ContaPoupanca(UsuarioCliente usuario) {
         super(usuario);
+        DadosDoBanco.ContaPoupanca.add(this);
     }
 
     @Override

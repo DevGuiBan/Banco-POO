@@ -1,19 +1,14 @@
 
 public class Main {
     public static void main(String[] args) {
-        //Menu menu = new Menu();
-        //menu.exibirMenu();
 
-        UsuarioCliente cliente = new UsuarioCliente("Gustavo", "gushabib@gmail.com", "21988668348");
+        UsuarioCliente usuario1 = UsuarioCliente.adicionarUsuario();
 
-        ContaCorrente conta = new ContaCorrente(cliente);
-        System.out.println("+++++++++corrente+++++++++++");
+        System.out.println(usuario1);
 
-        System.out.println(conta);
+        UsuarioGerente gerente1 = UsuarioGerente.adicionarGerente();
 
-        ContaPoupanca poupanca = new ContaPoupanca(cliente);
-        System.out.println("+++++++++poupança+++++++++++");
+        System.out.println(gerente1);
 
-        System.out.println(poupanca);
     }
 }
