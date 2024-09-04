@@ -40,10 +40,4 @@ public class Agenda {
         }
         contatosDaAgenda = contatosDaAgendaAumentado;
     }
-
-    //testando o git
-    //testando o git2
-    //testando o git3
-    //testando o git4
-
 }
