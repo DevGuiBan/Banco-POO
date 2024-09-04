@@ -15,9 +15,10 @@ public class Menu {
             System.out.println("----------- MENU GERAL -----------");
             System.out.println("    [1] Adicionar Usuario | Conta");
             System.out.println("    [2] Listar Usuarios | Contas");
-            System.out.println("    [3] Editar Usuario");
-            System.out.println("    [4] Remover Usuario | Conta");
-            System.out.println("    [5] Sair");
+            System.out.println("    [3] Movimentar Conta");
+            System.out.println("    [4] Editar Usuario");
+            System.out.println("    [5] Remover Usuario | Conta");
+            System.out.println("    [6] Sair");
             int escolha = input.nextInt();
             input.nextLine();
 
@@ -33,10 +34,10 @@ public class Menu {
                 case 4:
                     break;
                 case 5:
+                    break;
+                case 6:
                     exibirMenu = false;
                     break;
-
-
             }
 
         }
