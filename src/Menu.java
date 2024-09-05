@@ -2,31 +2,46 @@ import java.util.Scanner;
 
 public class Menu {
 
-    Agenda agenda = new Agenda();
-    Scanner sc = new Scanner(System.in);
+    Scanner input = new Scanner(System.in);
 
-    public void exibirMenu() {
+    public static void exibirMenu() {
 
-        while (true) {
+        Scanner input = new Scanner(System.in);
 
-            System.out.println("    [1] Adicionar Contato");
-            System.out.println("    [2] Detalhar Contato");
-            System.out.println("    [3] Editar Contato");
-            System.out.println("    [4] Remover Contato");
-            System.out.println("    [5] Listar Contatos");
+        boolean exibirMenu = true;
+
+        while (exibirMenu) {
+
+            System.out.println("----------- MENU GERAL -----------");
+            System.out.println("    [1] Adicionar Cliente | Conta");
+            System.out.println("    [2] Listar Clientes | Contas");
+            System.out.println("    [3] Movimentar Conta");
+            System.out.println("    [4] Editar Cliente");
+            System.out.println("    [5] Remover Contas");
             System.out.println("    [6] Sair");
-            int escolha = sc.nextInt();
-            sc.nextLine();
+            int escolha = input.nextInt();
+            input.nextLine();
 
             switch (escolha) {
                 case 1:
-                    agenda.captarContatoParaAgenda();
+                    MetodosMenu.adicionar();
                     break;
                 case 2:
+                    MetodosMenu.listar();
                     break;
                 case 3:
                     break;
                 case 4:
+                    MetodosMenu.editarUsuario();
+                    break;
+                case 5:
+                    MetodosMenu.removerContas();
+                    break;
+                case 6:
+                    exibirMenu = false;
+                    break;
+                default:
+                    System.out.println("Opção digitada errada, tente novamente!");
                     break;
             }
 
