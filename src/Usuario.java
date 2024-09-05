@@ -1,12 +1,12 @@
 public abstract class Usuario {
     private String nome;
     private String email;
-    private String telefone;
+    private String CPF;
 
     public Usuario(String nome, String email, String telefone) {
         this.nome = nome;
         this.email = email;
-        this.telefone = telefone;
+        this.CPF = telefone;
     }
 
     public String getNome() {
@@ -25,12 +25,12 @@ public abstract class Usuario {
         this.email = email;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public String getCPF() {
+        return CPF;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setCPF(String telefone) {
+        this.CPF = telefone;
     }
 
     @Override
@@ -38,7 +38,7 @@ public abstract class Usuario {
         return "Usuario{" +
                 "nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
-                ", telefone='" + telefone + '\'' +
+                ", CPF='" + CPF + '\'' +
                 '}';
     }
 }

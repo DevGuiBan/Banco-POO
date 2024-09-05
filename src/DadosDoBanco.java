@@ -17,4 +17,9 @@ public class DadosDoBanco {
     public static List<UsuarioCliente> ListarUsuarioCliente(){
         return UsuarioCliente;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }

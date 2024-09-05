@@ -68,7 +68,7 @@ public class Menu {
                     System.out.println(cliente);
                     break;
                 case 2:
-                    if (cliente == null){
+                    if (DadosDoBanco.ListarUsuarioCliente().isEmpty()){
                         System.out.println("Cliente ainda não criado, criar antes de adicionar uma conta corrente!");
                     }else{
                         ContaCorrente corrente = new ContaCorrente(cliente);
@@ -77,12 +77,16 @@ public class Menu {
                     }
                     break;
                 case 3:
-                    if (cliente == null){
+                    if (DadosDoBanco.ListarUsuarioCliente().isEmpty()){
                         System.out.println("Cliente ainda não criado, criar antes de adicionar uma conta poupança!");
                     }else{
-                        ContaPoupanca poupanca = new ContaPoupanca(cliente);
-                        System.out.println("Conta poupança adicionada com sucesso!");
-                        System.out.println(poupanca);
+                        System.out.println("Informe o CPF do cliente que deseja cadastrar a conta poupança!");
+                        String CPF = input.nextLine();
+                        if (DadosDoBanco.ListarUsuarioCliente().contains(CPF)){
+                            ContaPoupanca poupanca = new ContaPoupanca(cliente);
+                            System.out.println("Conta poupança adicionada com sucesso!");
+                            System.out.println(poupanca);
+                        }
                     }
                     break;
                 case 4:
@@ -102,6 +106,49 @@ public class Menu {
             System.out.println("    [1] Listar Clientes");
             System.out.println("    [2] Listar Contas Correntes");
             System.out.println("    [3] Listar Contas Poupanças");
+            System.out.println("    [4] Sair");
+            int escolha = input.nextInt();
+            input.nextLine();
+
+            switch (escolha) {
+                case 1:
+                    if (DadosDoBanco.ListarUsuarioCliente().isEmpty()){
+                        System.out.println("Não existe clientes cadastrados!");
+                    }else{
+                        System.out.println(DadosDoBanco.ListarUsuarioCliente());
+                    }
+                    break;
+                case 2:
+                    if (DadosDoBanco.ListarContaCorrente().isEmpty()){
+                        System.out.println("Não existe nenhuma conta corrente cadastrada!");
+                    }else{
+                        System.out.println(DadosDoBanco.ListarContaCorrente());
+                    }
+                    break;
+                case 3:
+                    if (DadosDoBanco.ListarContaPoupanca().isEmpty()){
+                        System.out.println("Não existe nenhuma conta poupança cadastrada!");
+                    }else{
+                        System.out.println(DadosDoBanco.ListarContaPoupanca());
+                    }
+                    break;
+                case 4:
+                    exibirAdicionar = false;
+                    break;
+            }
+        }
+    }
+
+    private static void removerUsuarioOuConta(){
+        Scanner input = new Scanner(System.in);
+        boolean exibirAdicionar = true;
+
+        while (exibirAdicionar) {
+
+            System.out.println(" MENU PARA REMOVER CLIENTE OU CONTA");
+            System.out.println("    [1] Remover Usuario");
+            System.out.println("    [2] Remover Conta Corrente");
+            System.out.println("    [3] Remover Conta Poupança");
             System.out.println("    [4] Sair");
             int escolha = input.nextInt();
             input.nextLine();

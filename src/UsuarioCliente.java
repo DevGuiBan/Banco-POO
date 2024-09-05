@@ -4,29 +4,23 @@ public class UsuarioCliente extends Usuario{
 
     static String clienteNome;
     static String clienteEmail;
-    static String clienteTelefone;
+    static String clienteCPF;
 
     private UsuarioCliente() {
-        super(clienteNome, clienteEmail, clienteTelefone);
+        super(clienteNome, clienteEmail, clienteCPF);
         DadosDoBanco.UsuarioCliente.add(this);
     }
 
     public static UsuarioCliente adicionarCliente(){
 
-        String[] adicionado = new String[3];
-
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Digite o nome do cliente: ");
-        adicionado[0] = scanner.nextLine();
+        clienteNome = scanner.nextLine();
         System.out.println("Digite o email do cliente: ");
-        adicionado[1] = scanner.nextLine();
-        System.out.println("Digite o telefone do cliente: ");
-        adicionado[2] = scanner.nextLine();
-
-        clienteNome = adicionado[0];
-        clienteEmail = adicionado[1];
-        clienteTelefone = adicionado[2];
+        clienteEmail = scanner.nextLine();
+        System.out.println("Digite o CPF do cliente: ");
+        clienteCPF = scanner.nextLine();
 
         return new UsuarioCliente();
     }
@@ -34,9 +28,9 @@ public class UsuarioCliente extends Usuario{
     @Override
     public String toString() {
         return "Cliente {" +
-                "nome='" + getNome() + '\'' +
-                ", email='" + getEmail() + '\'' +
-                ", telefone='" + getTelefone() + '\'' +
+                "nome ='" + getNome() + '\'' +
+                ", email ='" + getEmail() + '\'' +
+                ", CPF ='" + getCPF() + '\'' +
                 '}';
     }
 
