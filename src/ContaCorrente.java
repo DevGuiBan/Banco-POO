@@ -1,8 +1,9 @@
 import java.math.BigDecimal;
 
-public class ContaCorrente extends Conta{
+public class ContaCorrente extends Conta {
 
     private BigDecimal limite;
+    private BigDecimal saldoComLimite = getSaldo().add(limite);
 
     public ContaCorrente(UsuarioCliente usuario) {
         super(usuario);
@@ -16,6 +17,47 @@ public class ContaCorrente extends Conta{
 
     public void setLimite(BigDecimal limite) {
         this.limite = limite;
+    }
+
+    @Override
+    protected void depositar(BigDecimal valor) {
+        if (limite.compareTo(BigDecimal.valueOf(500.0)) > 0) {
+            BigDecimal temp = BigDecimal.valueOf(500.0).subtract(getLimite());
+            if (valor.compareTo(temp) >= 0) {
+                setLimite(getLimite().add(valor));
+            }else if (valor.compareTo(temp) > 0) {
+                setLimite(BigDecimal.valueOf(500.0));
+                setSaldo(valor.subtract(temp));
+            }
+        }
+    }
+
+    @Override
+    protected void tranferir(BigDecimal valor, Conta destino) {
+        if (saldoComLimite.compareTo(valor) < 0) {
+            System.out.printf("Saldo insuficiente!");
+        } else if (valor.compareTo(getSaldo()) >= 0) {
+            BigDecimal temp = valor.subtract(getSaldo());
+            setSaldo(BigDecimal.ZERO);
+            setLimite(getLimite().subtract(temp));
+            destino.depositar(valor);
+        } else if (valor.compareTo(getSaldo()) < 0) {
+            setSaldo(getSaldo().subtract(valor));
+            destino.depositar(valor);
+        }
+    }
+
+    @Override
+    protected void retirar(BigDecimal valor) {
+        if (saldoComLimite.compareTo(valor) < 0) {
+            System.out.printf("Saldo insuficiente!");
+        } else if (valor.compareTo(getSaldo()) >= 0) {
+            BigDecimal temp = valor.subtract(getSaldo());
+            setSaldo(BigDecimal.ZERO);
+            setLimite(getLimite().subtract(temp));
+        } else if (valor.compareTo(getSaldo()) < 0) {
+            setSaldo(getSaldo().subtract(valor));
+        }
     }
 
     @Override

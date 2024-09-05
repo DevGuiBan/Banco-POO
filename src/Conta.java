@@ -34,6 +34,27 @@ public abstract class Conta {
         this.saldo = saldo;
     }
 
+    protected void depositar(BigDecimal valor) {
+        this.saldo = this.saldo.add(valor);
+    }
+
+    protected void tranferir(BigDecimal valor, Conta destino) {
+        if (this.saldo.compareTo(valor) < 0){
+            System.out.printf("Saldo insuficiente!");
+        }else{
+            this.saldo = this.saldo.subtract(valor);
+            destino.depositar(valor);
+        }
+    }
+
+    protected void retirar(BigDecimal valor) {
+        if (this.saldo.compareTo(valor) < 0) {
+            System.out.printf("Saldo insuficiente!");
+        }else{
+            this.saldo = this.saldo.subtract(valor);
+        }
+    }
+
     @Override
     public String toString() {
         return "Conta{" +

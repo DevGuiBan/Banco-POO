@@ -11,6 +11,11 @@ public class UsuarioCliente extends Usuario{
         DadosDoBanco.UsuarioCliente.add(this);
     }
 
+    private UsuarioCliente(String CPF) {
+        super(clienteNome, clienteEmail, clienteCPF);
+        DadosDoBanco.UsuarioCliente.add(this);
+    }
+
     public static UsuarioCliente adicionarCliente(){
 
         Scanner scanner = new Scanner(System.in);
@@ -23,6 +28,19 @@ public class UsuarioCliente extends Usuario{
         clienteCPF = scanner.nextLine();
 
         return new UsuarioCliente();
+    }
+
+    public static UsuarioCliente adicionarCliente(String CPF){
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Digite o nome do cliente: ");
+        clienteNome = scanner.nextLine();
+        System.out.println("Digite o email do cliente: ");
+        clienteEmail = scanner.nextLine();
+        clienteCPF = CPF;
+
+        return new UsuarioCliente(clienteCPF);
     }
 
     @Override
