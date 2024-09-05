@@ -71,9 +71,15 @@ public class Menu {
                     if (DadosDoBanco.ListarUsuarioCliente().isEmpty()){
                         System.out.println("Cliente ainda não criado, criar antes de adicionar uma conta corrente!");
                     }else{
-                        ContaCorrente corrente = new ContaCorrente(cliente);
-                        System.out.println("Conta corrente adicionada com sucesso!");
-                        System.out.println(corrente);
+                        System.out.println("Informe o CPF do cliente que deseja cadastrar a conta corrente!");
+                        String CPF = input.nextLine();
+                        for (int i = 0; i < DadosDoBanco.ListarUsuarioCliente().size(); i++) {
+                            if (DadosDoBanco.UsuarioCliente.get(i).getCPF().equals(CPF)){
+                                ContaCorrente corrente = new ContaCorrente(DadosDoBanco.UsuarioCliente.get(i));
+                                System.out.println("Conta corrente adicionada com sucesso!");
+                                System.out.println(corrente);
+                            }
+                        }
                     }
                     break;
                 case 3:
@@ -82,10 +88,12 @@ public class Menu {
                     }else{
                         System.out.println("Informe o CPF do cliente que deseja cadastrar a conta poupança!");
                         String CPF = input.nextLine();
-                        if (DadosDoBanco.ListarUsuarioCliente().contains(CPF)){
-                            ContaPoupanca poupanca = new ContaPoupanca(cliente);
-                            System.out.println("Conta poupança adicionada com sucesso!");
-                            System.out.println(poupanca);
+                        for (int i = 0; i < DadosDoBanco.ListarUsuarioCliente().size(); i++) {
+                            if (DadosDoBanco.UsuarioCliente.get(i).getCPF().equals(CPF)){
+                                ContaPoupanca poupanca = new ContaPoupanca(DadosDoBanco.UsuarioCliente.get(i));
+                                System.out.println("Conta poupança adicionada com sucesso!");
+                                System.out.println(poupanca);
+                            }
                         }
                     }
                     break;
