@@ -17,7 +17,7 @@ public class Menu {
             System.out.println("    [2] Listar Usuarios | Contas");
             System.out.println("    [3] Movimentar Conta");
             System.out.println("    [4] Editar Usuario");
-            System.out.println("    [5] Remover Usuario | Conta");
+            System.out.println("    [5] Remover Contas");
             System.out.println("    [6] Sair");
             int escolha = input.nextInt();
             input.nextLine();
@@ -34,9 +34,13 @@ public class Menu {
                 case 4:
                     break;
                 case 5:
+                    removerContas();
                     break;
                 case 6:
                     exibirMenu = false;
+                    break;
+                default:
+                    System.out.println("Opção digitada errada, tente novamente!");
                     break;
             }
 
@@ -100,6 +104,9 @@ public class Menu {
                 case 4:
                     exibirAdicionar = false;
                     break;
+                default:
+                    System.out.println("Opção digitada errada, tente novamente!");
+                    break;
             }
         }
     }
@@ -143,48 +150,62 @@ public class Menu {
                 case 4:
                     exibirAdicionar = false;
                     break;
+                default:
+                    System.out.println("Opção digitada errada, tente novamente!");
+                    break;
             }
         }
     }
 
-    private static void removerUsuarioOuConta(){
+    private static void removerContas(){
         Scanner input = new Scanner(System.in);
         boolean exibirAdicionar = true;
 
         while (exibirAdicionar) {
 
-            System.out.println(" MENU PARA REMOVER CLIENTE OU CONTA");
-            System.out.println("    [1] Remover Usuario");
-            System.out.println("    [2] Remover Conta Corrente");
-            System.out.println("    [3] Remover Conta Poupança");
-            System.out.println("    [4] Sair");
+            System.out.println(" MENU PARA REMOVER CONTAS");
+            System.out.println("    [1] Remover Conta Corrente");
+            System.out.println("    [2] Remover Conta Poupança");
+            System.out.println("    [3] Sair");
             int escolha = input.nextInt();
             input.nextLine();
 
             switch (escolha) {
                 case 1:
-                    if (DadosDoBanco.ListarUsuarioCliente().isEmpty()){
-                        System.out.println("Não existe clientes cadastrados!");
-                    }else{
-                        System.out.println(DadosDoBanco.ListarUsuarioCliente());
-                    }
-                    break;
-                case 2:
                     if (DadosDoBanco.ListarContaCorrente().isEmpty()){
                         System.out.println("Não existe nenhuma conta corrente cadastrada!");
                     }else{
-                        System.out.println(DadosDoBanco.ListarContaCorrente());
+                        System.out.println("Informe o CPF do cliente que deseja remover a conta corrente!");
+                        String CPF = input.nextLine();
+                        for (int i = 0; i < DadosDoBanco.ListarContaCorrente().size(); i++) {
+                            if (DadosDoBanco.ContaCorrente.get(i).usuarioCliente.get(0).getCPF().equals(CPF)){
+                                String corrente = DadosDoBanco.ContaCorrente.get(i).toString();
+                                DadosDoBanco.ContaCorrente.remove(i);
+                                System.out.println("Conta removida com sucesso: " + corrente);
+                            }
+                        }
+                    }
+                    break;
+                case 2:
+                    if (DadosDoBanco.ListarContaPoupanca().isEmpty()){
+                        System.out.println("Não existe nenhuma conta poupança cadastrada!");
+                    }else {
+                        System.out.println("Informe o CPF do cliente que deseja remover a conta poupança!");
+                        String CPF = input.nextLine();
+                        for (int i = 0; i < DadosDoBanco.ListarContaPoupanca().size(); i++) {
+                            if (DadosDoBanco.ContaPoupanca.get(i).usuarioCliente.get(0).getCPF().equals(CPF)){
+                                String corrente = DadosDoBanco.ContaPoupanca.get(i).toString();
+                                DadosDoBanco.ContaPoupanca.remove(i);
+                                System.out.println("Conta removida com sucesso: " + corrente);
+                            }
+                        }
                     }
                     break;
                 case 3:
-                    if (DadosDoBanco.ListarContaPoupanca().isEmpty()){
-                        System.out.println("Não existe nenhuma conta poupança cadastrada!");
-                    }else{
-                        System.out.println(DadosDoBanco.ListarContaPoupanca());
-                    }
-                    break;
-                case 4:
                     exibirAdicionar = false;
+                    break;
+                default:
+                    System.out.println("Opção digitada errada, tente novamente!");
                     break;
             }
         }
