@@ -280,6 +280,7 @@ public class MetodosMenu {
         String email = null;
         UsuarioCliente cliente = null;
         BigDecimal valor = BigDecimal.ZERO;
+        Conta destino = null;
 
         while (exibirAdicionar) {
 
@@ -299,13 +300,13 @@ public class MetodosMenu {
                         if (DadosDoBanco.ContaCorrente.get(i).usuarioCliente.get(0).getCPF().equals(CPF)) {
                             System.out.println("Conta corrente encontrada: ");
                             System.out.println(DadosDoBanco.ContaCorrente.get(i));
-                            System.out.println("Informe o valor que deseja depositar depositar.");
+                            System.out.println("Informe o valor que deseja depositar.");
                             valor = input.nextBigDecimal();
                             DadosDoBanco.ContaCorrente.get(i).depositar(valor);
                             System.out.println("O valor " + valor + " foi depositado com sucesso!");
                             System.out.println(DadosDoBanco.ContaCorrente.get(i));
+                            break;
                         }
-                        break;
                     }
                     for (int i = 0; i < DadosDoBanco.ListarContaPoupanca().size(); i++) {
                         if (DadosDoBanco.ContaPoupanca.get(i).usuarioCliente.get(0).getCPF().equals(CPF)) {
@@ -316,37 +317,83 @@ public class MetodosMenu {
                             DadosDoBanco.ContaPoupanca.get(i).depositar(valor);
                             System.out.println("O valor " + valor + " foi depositado com sucesso!");
                             System.out.println(DadosDoBanco.ContaPoupanca.get(i));
+                            break;
                         }
-                        break;
                     }
                     break;
                 case 2:
-                    System.out.println("Informe o CPF do cliente que deseja editar o email!");
+                    System.out.println("Informe o CPF vinculado a conta que deseja retirar dinheiro.");
                     CPF = input.nextLine();
-                    for (int i = 0; i < DadosDoBanco.ListarUsuarioCliente().size(); i++) {
-                        if (DadosDoBanco.UsuarioCliente.get(i).getCPF().equals(CPF)) {
-                            System.out.println("Informe o novo email que deseja cadastrar!");
-                            email = input.nextLine();
-                            DadosDoBanco.UsuarioCliente.get(i).setEmail(email);
+                    for (int i = 0; i < DadosDoBanco.ListarContaCorrente().size(); i++) {
+                        if (DadosDoBanco.ContaCorrente.get(i).usuarioCliente.get(0).getCPF().equals(CPF)) {
+                            System.out.println("Conta corrente encontrada: ");
+                            System.out.println(DadosDoBanco.ContaCorrente.get(i));
+                            System.out.println("Informe o valor que deseja retirar.");
+                            valor = input.nextBigDecimal();
+                            DadosDoBanco.ContaCorrente.get(i).retirar(valor);
+                            System.out.println("O valor " + valor + " foi retirado com sucesso!");
+                            System.out.println(DadosDoBanco.ContaCorrente.get(i));
+                            break;
                         }
                     }
-                    if (email != null){
-                        for (int i = 0; i < DadosDoBanco.ListarContaCorrente().size(); i++){
-                            if (DadosDoBanco.ContaCorrente.get(i).usuarioCliente.get(0).getCPF().equals(CPF)) {
-                                DadosDoBanco.ContaCorrente.get(i).usuarioCliente.get(0).setEmail(email);
-                            }
+                    for (int i = 0; i < DadosDoBanco.ListarContaPoupanca().size(); i++) {
+                        if (DadosDoBanco.ContaPoupanca.get(i).usuarioCliente.get(0).getCPF().equals(CPF)) {
+                            System.out.println("Conta poupança encontrada: ");
+                            System.out.println(DadosDoBanco.ContaPoupanca.get(i));
+                            System.out.println("Informe o valor que deseja retirar.");
+                            valor = input.nextBigDecimal();
+                            DadosDoBanco.ContaPoupanca.get(i).retirar(valor);
+                            System.out.println("O valor " + valor + " foi retirar com sucesso!");
+                            System.out.println(DadosDoBanco.ContaPoupanca.get(i));
+                            break;
                         }
-                        for (int i = 0; i < DadosDoBanco.ListarContaPoupanca().size(); i++){
-                            if (DadosDoBanco.ContaPoupanca.get(i).usuarioCliente.get(0).getCPF().equals(CPF)) {
-                                DadosDoBanco.ContaPoupanca.get(i).usuarioCliente.get(0).setEmail(email);
-                            }
-                        }
-                        System.out.println("Email alterado com sucesso para o CPF " + CPF);
-                    }else{
-                        System.out.println("Não encontramos o cadastro para o CPF " + CPF);
                     }
                     break;
                 case 3:
+                    System.out.println("Informe o CPF vinculado a conta que deseja enviar o dinheiro (conta destino).");
+                    CPF = input.nextLine();
+                    for (int i = 0; i < DadosDoBanco.ListarContaCorrente().size(); i++) {
+                        if (DadosDoBanco.ContaCorrente.get(i).usuarioCliente.get(0).getCPF().equals(CPF)) {
+                            System.out.println("Conta corrente destino encontrada: ");
+                            System.out.println(DadosDoBanco.ContaCorrente.get(i));
+                            destino = DadosDoBanco.ContaCorrente.get(i);
+                        }
+                    }
+                    for (int i = 0; i < DadosDoBanco.ListarContaPoupanca().size(); i++) {
+                        if (DadosDoBanco.ContaPoupanca.get(i).usuarioCliente.get(0).getCPF().equals(CPF)) {
+                            System.out.println("Conta poupança destino encontrada: ");
+                            System.out.println(DadosDoBanco.ContaPoupanca.get(i));
+                            destino = DadosDoBanco.ContaPoupanca.get(i);
+                        }
+                    }
+                    System.out.println("Informe o CPF vinculado a conta que irá enviar o dinheiro (conta origem).");
+                    CPF = input.nextLine();
+                    for (int i = 0; i < DadosDoBanco.ListarContaCorrente().size(); i++) {
+                        if (DadosDoBanco.ContaCorrente.get(i).usuarioCliente.get(0).getCPF().equals(CPF)) {
+                            System.out.println("Conta corrente origem encontrada: ");
+                            System.out.println(DadosDoBanco.ContaCorrente.get(i));
+                            System.out.println("Informe o valor que deseja transferir.");
+                            valor = input.nextBigDecimal();
+                            DadosDoBanco.ContaCorrente.get(i).tranferir(valor, destino);
+                            System.out.println("O valor " + valor + " foi transferido com sucesso para a conta: " + destino);
+                            System.out.println("Conta corrente origem: " + DadosDoBanco.ContaCorrente.get(i));
+                            break;
+                        }
+                    }
+                    for (int i = 0; i < DadosDoBanco.ListarContaPoupanca().size(); i++) {
+                        if (DadosDoBanco.ContaPoupanca.get(i).usuarioCliente.get(0).getCPF().equals(CPF)) {
+                            System.out.println("Conta poupança origem encontrada: ");
+                            System.out.println(DadosDoBanco.ContaPoupanca.get(i));
+                            System.out.println("Informe o valor que deseja retirar.");
+                            valor = input.nextBigDecimal();
+                            DadosDoBanco.ContaPoupanca.get(i).tranferir(valor, destino);
+                            System.out.println("O valor " + valor + " foi transferido com sucesso para a conta: " + destino);
+                            System.out.println("Conta corrente origem: " + DadosDoBanco.ContaPoupanca.get(i));
+                            break;
+                        }
+                    }
+                    break;
+                case 4:
                     exibirAdicionar = false;
                     break;
                 default:
