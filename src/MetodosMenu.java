@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class MetodosMenu {
@@ -32,15 +33,20 @@ public class MetodosMenu {
                     }else {
                         System.out.println("Informe o CPF do cliente que deseja cadastrar!");
                         CPF = input.nextLine();
-                        for (int i = 0; i < DadosDoBanco.ListarUsuarioCliente().size(); i++) {
-                            if (DadosDoBanco.UsuarioCliente.get(i).getCPF().equals(CPF)) {
-                                System.out.println("O CPF informado já tem cadastro!");
+                        boolean fim = true;
+                            for (int i = 0; i < DadosDoBanco.ListarUsuarioCliente().size(); i++) {
+                                if (DadosDoBanco.UsuarioCliente.get(i).getCPF().equals(CPF)) {
+                                    System.out.println("O CPF informado já tem cadastro!");
+                                    fim = false;
+                                    break;
+                                }
+                            }
+                            if (fim) {
+                                cliente = UsuarioCliente.adicionarCliente(CPF);
+                                System.out.println("Cliente adicionado com sucesso!");
+                                System.out.println(cliente);
                                 break;
                             }
-                        }
-                        cliente = UsuarioCliente.adicionarCliente(CPF);
-                        System.out.println("Cliente adicionado com sucesso!");
-                        System.out.println(cliente);
                      }
                     break;
                 case 2:
@@ -71,6 +77,7 @@ public class MetodosMenu {
                                 ContaPoupanca poupanca = new ContaPoupanca(DadosDoBanco.UsuarioCliente.get(i));
                                 System.out.println("Conta poupança adicionada com sucesso!");
                                 System.out.println(poupanca);
+                                break;
                             }
                         }
                     }
@@ -266,6 +273,86 @@ public class MetodosMenu {
     }
 
     protected static void movimentarConta() {
+        Scanner input = new Scanner(System.in);
+        boolean exibirAdicionar = true;
+        String CPF = null;
+        String nome = null;
+        String email = null;
+        UsuarioCliente cliente = null;
+        BigDecimal valor = BigDecimal.ZERO;
 
+        while (exibirAdicionar) {
+
+            System.out.println(" MENU PARA MOVIMENTO DE CONTA");
+            System.out.println("    [1] Depósito");
+            System.out.println("    [2] Retirada");
+            System.out.println("    [3] Transferência");
+            System.out.println("    [4] Sair");
+            int escolha = input.nextInt();
+            input.nextLine();
+
+            switch (escolha) {
+                case 1:
+                    System.out.println("Informe o CPF vinculado a conta que deseja depositar.");
+                    CPF = input.nextLine();
+                    for (int i = 0; i < DadosDoBanco.ListarContaCorrente().size(); i++) {
+                        if (DadosDoBanco.ContaCorrente.get(i).usuarioCliente.get(0).getCPF().equals(CPF)) {
+                            System.out.println("Conta corrente encontrada: ");
+                            System.out.println(DadosDoBanco.ContaCorrente.get(i));
+                            System.out.println("Informe o valor que deseja depositar depositar.");
+                            valor = input.nextBigDecimal();
+                            DadosDoBanco.ContaCorrente.get(i).depositar(valor);
+                            System.out.println("O valor " + valor + " foi depositado com sucesso!");
+                            System.out.println(DadosDoBanco.ContaCorrente.get(i));
+                        }
+                        break;
+                    }
+                    for (int i = 0; i < DadosDoBanco.ListarContaPoupanca().size(); i++) {
+                        if (DadosDoBanco.ContaPoupanca.get(i).usuarioCliente.get(0).getCPF().equals(CPF)) {
+                            System.out.println("Conta poupança encontrada: ");
+                            System.out.println(DadosDoBanco.ContaPoupanca.get(i));
+                            System.out.println("Informe o valor que deseja depositar depositar.");
+                            valor = input.nextBigDecimal();
+                            DadosDoBanco.ContaPoupanca.get(i).depositar(valor);
+                            System.out.println("O valor " + valor + " foi depositado com sucesso!");
+                            System.out.println(DadosDoBanco.ContaPoupanca.get(i));
+                        }
+                        break;
+                    }
+                    break;
+                case 2:
+                    System.out.println("Informe o CPF do cliente que deseja editar o email!");
+                    CPF = input.nextLine();
+                    for (int i = 0; i < DadosDoBanco.ListarUsuarioCliente().size(); i++) {
+                        if (DadosDoBanco.UsuarioCliente.get(i).getCPF().equals(CPF)) {
+                            System.out.println("Informe o novo email que deseja cadastrar!");
+                            email = input.nextLine();
+                            DadosDoBanco.UsuarioCliente.get(i).setEmail(email);
+                        }
+                    }
+                    if (email != null){
+                        for (int i = 0; i < DadosDoBanco.ListarContaCorrente().size(); i++){
+                            if (DadosDoBanco.ContaCorrente.get(i).usuarioCliente.get(0).getCPF().equals(CPF)) {
+                                DadosDoBanco.ContaCorrente.get(i).usuarioCliente.get(0).setEmail(email);
+                            }
+                        }
+                        for (int i = 0; i < DadosDoBanco.ListarContaPoupanca().size(); i++){
+                            if (DadosDoBanco.ContaPoupanca.get(i).usuarioCliente.get(0).getCPF().equals(CPF)) {
+                                DadosDoBanco.ContaPoupanca.get(i).usuarioCliente.get(0).setEmail(email);
+                            }
+                        }
+                        System.out.println("Email alterado com sucesso para o CPF " + CPF);
+                    }else{
+                        System.out.println("Não encontramos o cadastro para o CPF " + CPF);
+                    }
+                    break;
+                case 3:
+                    exibirAdicionar = false;
+                    break;
+                default:
+                    System.out.println("Opção digitada errada, tente novamente!");
+                    break;
+            }
+        }
     }
 }

@@ -30,6 +30,7 @@ public class Menu {
                     MetodosMenu.listar();
                     break;
                 case 3:
+                    MetodosMenu.movimentarConta();
                     break;
                 case 4:
                     MetodosMenu.editarUsuario();

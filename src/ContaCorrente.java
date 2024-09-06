@@ -2,12 +2,12 @@ import java.math.BigDecimal;
 
 public class ContaCorrente extends Conta {
 
-    private BigDecimal limite;
+    private BigDecimal limite = BigDecimal.ZERO;
     private BigDecimal saldoComLimite = getSaldo().add(limite);
 
     public ContaCorrente(UsuarioCliente usuario) {
         super(usuario);
-        limite = BigDecimal.valueOf(500.0);
+        this.limite = BigDecimal.valueOf(500.0);
         DadosDoBanco.ContaCorrente.add(this);
     }
 
@@ -21,15 +21,13 @@ public class ContaCorrente extends Conta {
 
     @Override
     protected void depositar(BigDecimal valor) {
-        if (limite.compareTo(BigDecimal.valueOf(500.0)) > 0) {
             BigDecimal temp = BigDecimal.valueOf(500.0).subtract(getLimite());
-            if (valor.compareTo(temp) >= 0) {
-                setLimite(getLimite().add(valor));
-            }else if (valor.compareTo(temp) > 0) {
+            if(temp.compareTo(BigDecimal.ZERO) == 0) {
+                setSaldo(getSaldo().add(valor));
+            }else if(temp.compareTo(BigDecimal.ZERO) > 0) {
                 setLimite(BigDecimal.valueOf(500.0));
                 setSaldo(valor.subtract(temp));
             }
-        }
     }
 
     @Override
