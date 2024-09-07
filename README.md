@@ -1,5 +1,5 @@
 <p align = "center">
-  <img src="https://cdn.icon-icons.com/icons2/2601/PNG/512/piggy_bank_icon_155904.png" alt="Banco Logo" width="400">
+  <img src="https://cdn.icon-icons.com/icons2/2601/PNG/512/piggy_bank_icon_155904.png" alt="Banco Logo" width="400" height="200">
 </p>
 
 # Sistema Bancário Simples
