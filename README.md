@@ -1,8 +1,7 @@
-<p align = "center">
-  <img src="https://cdn.icon-icons.com/icons2/2601/PNG/512/piggy_bank_icon_155904.png" alt="Banco Logo" width="400" height="300">
-</p>
+# <img src="https://cdn.icon-icons.com/icons2/2601/PNG/512/piggy_bank_icon_155904.png" alt="Banco Logo" width="40" height="40"> Sistema Bancário Simples <img src="https://cdn.icon-icons.com/icons2/2601/PNG/512/piggy_bank_icon_155904.png" alt="Banco Logo" width="40" height="40">
 
-# Sistema Bancário Simples
+Este projeto é uma aplicação de sistema bancário que permite gerenciar usuários com diferentes tipos de contas, como Conta Corrente e Conta Poupança. Ele foi desenvolvido como parte de um exercício de Programação Orientada a Objetos (POO) e inclui os seguintes conceitos:
+
 
 Este projeto é uma aplicação de sistema bancário que permite gerenciar usuários com diferentes tipos de contas, como Conta Corrente e Conta Poupança. Ele foi desenvolvido como parte de um exercício de Programação Orientada a Objetos (POO) e inclui os seguintes conceitos:
 
