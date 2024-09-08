@@ -67,5 +67,6 @@ public class ContaCorrente extends Conta {
                 ", limite=" + limite +
                 ", " + usuarioCliente +
                 '}';
+        //return "CONTA CORRENTE [ " + "Agência = " + getAgencia() + "  |  Conta = " + getNumero() + "  |  Saldo = " + getSaldo() + "  |  Limite = " + limite + " ]";
     }
 }

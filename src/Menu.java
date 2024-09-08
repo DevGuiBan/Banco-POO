@@ -1,24 +1,22 @@
 import java.util.Scanner;
 
 public class Menu {
-
     Scanner input = new Scanner(System.in);
 
     public static void exibirMenu() {
-
         Scanner input = new Scanner(System.in);
 
         boolean exibirMenu = true;
 
         while (exibirMenu) {
-
-            System.out.println("----------- MENU GERAL -----------");
-            System.out.println("    [1] Adicionar Cliente | Conta");
-            System.out.println("    [2] Listar Clientes | Contas");
-            System.out.println("    [3] Movimentar Conta");
-            System.out.println("    [4] Editar Cliente");
-            System.out.println("    [5] Remover Contas");
-            System.out.println("    [6] Sair");
+            System.out.println("\n\uD83D\uDFB4\uD83D\uDFB4\uD83D\uDFB4\uD83D\uDFB4\uD83D\uDFB4\uD83D\uDFB4 MENU GERAL \uD83D\uDFB4\uD83D\uDFB4\uD83D\uDFB4\uD83D\uDFB4\uD83D\uDFB4\uD83D\uDFB4");
+            System.out.println(" [1] Adicionar Clientes | Conta");
+            System.out.println(" [2] Listar Clientes | Contas");
+            System.out.println(" [3] Movimentar Conta");
+            System.out.println(" [4] Editar Cliente");
+            System.out.println(" [5] Remover Contas");
+            System.out.println(" [6] Sair");
+            System.out.print("\uD83D\uDF82 Selecione a opção desejada: ");
             int escolha = input.nextInt();
             input.nextLine();
 
@@ -42,7 +40,7 @@ public class Menu {
                     exibirMenu = false;
                     break;
                 default:
-                    System.out.println("Opção digitada errada, tente novamente!");
+                    System.out.println("\n\ud83d\uddd9 Opção inválida, tente novamente!");
                     break;
             }
 

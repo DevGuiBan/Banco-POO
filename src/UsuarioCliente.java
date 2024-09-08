@@ -1,3 +1,5 @@
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class UsuarioCliente extends Usuario{
@@ -17,15 +19,15 @@ public class UsuarioCliente extends Usuario{
     }
 
     public static UsuarioCliente adicionarCliente(){
-
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Digite o nome do cliente: ");
-        clienteNome = scanner.nextLine();
-        System.out.println("Digite o email do cliente: ");
-        clienteEmail = scanner.nextLine();
-        System.out.println("Digite o CPF do cliente: ");
+        System.out.print("\n ￭ Digite o CPF do cliente: ");
         clienteCPF = scanner.nextLine();
+        System.out.print(" ￭ Digite o nome do cliente: ");
+        clienteNome = scanner.nextLine();
+        System.out.print(" ￭ Digite o email do cliente: ");
+        clienteEmail = scanner.nextLine();
+        System.out.println();
 
         return new UsuarioCliente();
     }
@@ -34,9 +36,9 @@ public class UsuarioCliente extends Usuario{
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Digite o nome do cliente: ");
+        System.out.print(" ￭ Digite o nome do cliente: ");
         clienteNome = scanner.nextLine();
-        System.out.println("Digite o email do cliente: ");
+        System.out.print(" ￭ Digite o email do cliente: ");
         clienteEmail = scanner.nextLine();
         clienteCPF = CPF;
 
@@ -50,7 +52,6 @@ public class UsuarioCliente extends Usuario{
                 ", email ='" + getEmail() + '\'' +
                 ", CPF ='" + getCPF() + '\'' +
                 '}';
+        //return "CLIENTE [ " + "Nome = " + getNome() + "  |  E-mail = " + getEmail() + "  |  CPF = " + getCPF() + " ]";
     }
-
-
 }

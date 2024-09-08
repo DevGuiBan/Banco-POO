@@ -35,7 +35,7 @@ public abstract class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" +
+        return "Cliente {" +
                 "nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
                 ", CPF='" + CPF + '\'' +
