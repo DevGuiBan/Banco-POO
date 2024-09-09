@@ -397,7 +397,7 @@ public class Menu {
         do {
             try {
                 System.out.println("╔══════════════════════════════════════════════╗");
-                System.out.println("║          TIPO DE CONTA PRA MOVITAÇÃO         ║");
+                System.out.println("║       TIPO DE CONTA PRA MOVIMENTAÇÃO         ║");
                 System.out.println("╠══════════════════════════════════════════════╣");
                 System.out.println("║  [1] ⇨ Conta Corrente                        ║");
                 System.out.println("║  [2] ⇨ Conta Poupança                        ║");
