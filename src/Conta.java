@@ -1,67 +1,80 @@
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public abstract class Conta {
-
-    private int numero;
-    private int agencia;
+    private int id = 0;
+    private String nome;
+    private String email;
+    private String cpf;
     private BigDecimal saldo;
-    List<UsuarioCliente> usuarioCliente = new ArrayList<UsuarioCliente>();
+    private final boolean contaCorrente;
+    private final boolean contaPoupanca;
 
-    protected Conta(UsuarioCliente usuario) {
-        Random aleatorio = new Random();
-        this.numero = aleatorio.nextInt(10000) + 10000;
-        this.agencia = 3451;
+
+    //Contrutor
+    public Conta(String nome, String email, String cpf, Boolean contaCorrente, Boolean contaPoupanca) {
+        this.id = id + 1;
+        this.nome = nome;
+        this.email = email;
+        this.cpf = cpf;
         this.saldo = BigDecimal.ZERO;
-        usuarioCliente.add(usuario);
+        this.contaCorrente = contaCorrente;
+        this.contaPoupanca = contaPoupanca;
     }
 
-    protected int getNumero() {
-        return numero;
+    //Getters e setters
+    public String getNome() {
+        return nome;
     }
 
-    protected int getAgencia() {
-        return agencia;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    protected BigDecimal getSaldo() {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public BigDecimal getSaldo() {
         return saldo;
     }
 
-    protected void setSaldo(BigDecimal saldo) {
-        this.saldo = saldo;
-    }
-
-    protected void depositar(BigDecimal valor) {
+    //Metodos
+    protected void adicionarSaldo(BigDecimal valor) {
         this.saldo = this.saldo.add(valor);
     }
 
-    protected void tranferir(BigDecimal valor, Conta destino) {
-        if (this.saldo.compareTo(valor) < 0){
-            System.out.printf("Saldo insuficiente!");
-        }else{
+    protected void subtrairSaldo(BigDecimal valor) {
+        this.saldo = this.saldo.subtract(valor);
+    }
+
+    public void transferir(Conta destino, BigDecimal valor) {
+        if (valor.compareTo(BigDecimal.ZERO) > 0 && saldo.compareTo(valor) >= 0) {
             this.saldo = this.saldo.subtract(valor);
-            destino.depositar(valor);
+            destino.saldo = destino.saldo.add(valor);
+            System.out.println("Transferência de " + valor + " realizada com sucesso!");
+        } else if (valor.compareTo(BigDecimal.ZERO) <= 0) {
+            System.out.println("O valor da transferência deve ser positivo.");
+        } else {
+            System.out.println("Saldo insuficiente para a transferência.");
         }
     }
 
-    protected void retirar(BigDecimal valor) {
-        if (this.saldo.compareTo(valor) < 0) {
-            System.out.printf("Saldo insuficiente!");
-        }else{
-            this.saldo = this.saldo.subtract(valor);
-        }
-    }
+    public abstract void exibirConta();
 
-    @Override
-    public String toString() {
-        return "Conta{" +
-                "numero=" + numero +
-                ", agencia=" + agencia +
-                ", saldo=" + saldo +
-                ", " + usuarioCliente +
-                '}';
-    }
+    public abstract void depositar(BigDecimal valor);
+
+    public abstract void sacar(BigDecimal valor);
+
 }

@@ -2,88 +2,50 @@ import java.math.BigDecimal;
 
 public class ContaCorrente extends Conta {
 
-    private BigDecimal limite = BigDecimal.ZERO;
-    private BigDecimal saldoComLimite = BigDecimal.ZERO;
+    private static final BigDecimal TAXA_SAQUE = new BigDecimal("5.00");
 
-    public ContaCorrente(UsuarioCliente usuario) {
-        super(usuario);
-        this.limite = BigDecimal.valueOf(500.0);
-        this.saldoComLimite = getSaldo().add(limite);
-        DadosDoBanco.ContaCorrente.add(this);
-    }
-
-    public BigDecimal getLimite() {
-        return limite;
-    }
-
-    public void setLimite(BigDecimal limite) {
-        this.limite = limite;
-    }
-
-    public BigDecimal getSaldoComLimite() {
-        return saldoComLimite;
+    public ContaCorrente(String nome, String email, String cpf) {
+        super(nome, email, cpf, true, false);
     }
 
     @Override
-    protected void depositar(BigDecimal valor) {
-            BigDecimal temp = BigDecimal.valueOf(500.0).subtract(getLimite());
-            if(temp.compareTo(BigDecimal.ZERO) == 0) {
-                setSaldo(getSaldo().add(valor));
-                System.out.println("\nO valor " + valor + " foi depositado com sucesso!");
-                this.saldoComLimite = getSaldo().add(limite);
-            }else if(temp.compareTo(BigDecimal.ZERO) > 0) {
-                setLimite(BigDecimal.valueOf(500.0));
-                setSaldo(valor.subtract(temp));
-                System.out.println("\nO valor " + valor + " foi depositado com sucesso!");
-                this.saldoComLimite = getSaldo().add(limite);
+    public void exibirConta(){
+        System.out.println("╔══════════════════════════════════════════════╗");
+        System.out.println("║             Informação de Conta              ║");
+        System.out.println("╚══════════════════════════════════════════════╝");
+        System.out.println("║  [Nome]  ⇨ " + getNome());
+        System.out.println("║  [Tipo]  ⇨ Corrente");
+        System.out.println("║  [CPF]   ⇨ " + getCpf());
+        System.out.println("║  [Email] ⇨ " + getEmail());
+        System.out.println("║  [Saldo] ⇨ " + getSaldo().toString());
+        System.out.println("╔══════════════════════════════════════════════╗");
+        System.out.println("║                                              ║");
+        System.out.println("╚══════════════════════════════════════════════╝");
+    }
+
+    @Override
+    public void depositar(BigDecimal valor) {
+        if (valor.compareTo(BigDecimal.ZERO) > 0) {
+            adicionarSaldo(valor);
+            System.out.println("Depósito de " + valor + " realizado com sucesso!");
+        } else {
+            System.out.println("O valor do depósito deve ser positivo.");
+        }
+    }
+
+    @Override
+    public void sacar(BigDecimal valor) {
+        if (valor.compareTo(BigDecimal.ZERO) > 0) {
+            BigDecimal valorTotal = valor.add(TAXA_SAQUE);
+            if (getSaldo().compareTo(valorTotal) >= 0) {
+                subtrairSaldo(valorTotal);
+                System.out.println("Saque de " + valor + " realizado com sucesso com taxa de " + TAXA_SAQUE + "!");
+            } else {
+                System.out.println("Saldo insuficiente para o saque e a taxa.");
             }
-    }
-
-    @Override
-    protected void tranferir(BigDecimal valor, Conta destino) {
-        if (ContaCorrente.this.saldoComLimite.compareTo(valor) < 0) {
-            System.out.println("Saldo insuficiente!\n");
-        } else if (valor.compareTo(ContaCorrente.this.getSaldo()) >= 0) {
-            BigDecimal temp = valor.subtract(getSaldo());
-            setSaldo(BigDecimal.ZERO);
-            setLimite(getLimite().subtract(temp));
-            destino.depositar(valor);
-            System.out.println("\nO valor " + valor + " foi transferido com sucesso para a conta: " + destino);
-            this.saldoComLimite = getSaldo().add(limite);
-        } else if (valor.compareTo(ContaCorrente.this.getSaldo()) < 0) {
-            setSaldo(getSaldo().subtract(valor));
-            destino.depositar(valor);
-            System.out.println("\nO valor " + valor + " foi transferido com sucesso para a conta: " + destino);
-            this.saldoComLimite = getSaldo().add(limite);
+        } else {
+            System.out.println("O valor do saque deve ser positivo.");
         }
-    }
 
-    @Override
-    protected void retirar(BigDecimal valor) {
-        if (saldoComLimite.compareTo(valor) < 0) {
-            System.out.println("Saldo insuficiente!\n");
-        } else if (valor.compareTo(getSaldo()) >= 0) {
-            BigDecimal temp = valor.subtract(getSaldo());
-            setSaldo(BigDecimal.ZERO);
-            setLimite(getLimite().subtract(temp));
-            System.out.println("\nO valor " + valor + " foi retirado com sucesso!");
-            this.saldoComLimite = getSaldo().add(limite);
-        } else if (valor.compareTo(getSaldo()) < 0) {
-            setSaldo(getSaldo().subtract(valor));
-            System.out.println("\nO valor " + valor + " foi retirado com sucesso!");
-            this.saldoComLimite = getSaldo().add(limite);
-        }
-    }
-
-    @Override
-    public String toString() {
-        return "Conta Corrente {" +
-                "numero=" + getNumero() +
-                ", agencia=" + getAgencia() +
-                ", saldo=" + getSaldo() +
-                ", limite=" + limite +
-                ", " + usuarioCliente +
-                '}';
-        //return "CONTA CORRENTE [ " + "Agência = " + getAgencia() + "  |  Conta = " + getNumero() + "  |  Saldo = " + getSaldo() + "  |  Limite = " + limite + " ]";
     }
 }
