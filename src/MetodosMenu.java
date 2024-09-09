@@ -27,7 +27,7 @@ public class MetodosMenu {
                     if (DadosDoBanco.UsuarioCliente.isEmpty()) {
                         cliente = UsuarioCliente.adicionarCliente();
                         System.out.println("   \uD83D\uDDF8 CLIENTE ADICIONADO COM SUCESSO !!!");
-                        System.out.println(cliente);
+                        cliente.toString();
                         break;
                     } else {
                         System.out.print("\n ￭ Digite o CPF do cliente: ");
@@ -43,7 +43,7 @@ public class MetodosMenu {
                         if (fim) {
                             cliente = UsuarioCliente.adicionarCliente(CPF);
                             System.out.println("\n   \uD83D\uDDF8 CLIENTE ADICIONADO COM SUCESSO !!!");
-                            System.out.println(cliente);
+                            cliente.toString();
                             break;
                         }
                     }
@@ -61,7 +61,7 @@ public class MetodosMenu {
                             if (DadosDoBanco.UsuarioCliente.get(i).getCPF().equals(CPF)) {
                                 ContaCorrente corrente = new ContaCorrente(DadosDoBanco.UsuarioCliente.get(i));
                                 System.out.println("\n   \uD83D\uDDF8 CONTA CORRENTE ADICIONADA COM SUCESSO !!!");
-                                System.out.println(corrente);
+                                corrente.toString();
                                 break;
                             }
                         }
@@ -77,7 +77,7 @@ public class MetodosMenu {
                             if (DadosDoBanco.UsuarioCliente.get(i).getCPF().equals(CPF)) {
                                 ContaPoupanca poupanca = new ContaPoupanca(DadosDoBanco.UsuarioCliente.get(i));
                                 System.out.println("\n   \uD83D\uDDF8 CONTA POUPANÇA ADICIONADA COM SUCESSO !!!");
-                                System.out.println(poupanca);
+                                poupanca.toString();
                                 break;
                             }
                         }
@@ -320,7 +320,6 @@ public class MetodosMenu {
                             System.out.print("\n ￭ Digite o valor que deseja depositar: ");
                             valor = input.nextBigDecimal();
                             DadosDoBanco.ContaPoupanca.get(i).depositar(valor);
-                            System.out.println("\nO valor " + valor + " foi depositado com sucesso!");
                             System.out.println(DadosDoBanco.ContaPoupanca.get(i));
                             break;
                         }
@@ -336,7 +335,6 @@ public class MetodosMenu {
                             System.out.print("\n ￭ Digite o valor que deseja sacar: ");
                             valor = input.nextBigDecimal();
                             DadosDoBanco.ContaCorrente.get(i).retirar(valor);
-                            System.out.println("\nO valor " + valor + " foi retirado com sucesso!");
                             System.out.println(DadosDoBanco.ContaCorrente.get(i));
                             break;
                         }
@@ -348,14 +346,13 @@ public class MetodosMenu {
                             System.out.print("\n ￭ Digite o valor que deseja sacar: ");
                             valor = input.nextBigDecimal();
                             DadosDoBanco.ContaPoupanca.get(i).retirar(valor);
-                            System.out.println("\nO valor " + valor + " foi retirar com sucesso!");
                             System.out.println(DadosDoBanco.ContaPoupanca.get(i));
                             break;
                         }
                     }
                     break;
                 case 3:
-                    System.out.println("\n ￭ Digite o CPF vinculado a conta que deseja transferir o dinheiro (conta destino): ");
+                    System.out.println("\n ￭ Digite o CPF vinculado a conta que irá receber o dinheiro (conta destino): ");
                     CPF = input.nextLine();
                     for (int i = 0; i < DadosDoBanco.ListarContaCorrente().size(); i++) {
                         if (DadosDoBanco.ContaCorrente.get(i).usuarioCliente.get(0).getCPF().equals(CPF)) {
@@ -380,7 +377,6 @@ public class MetodosMenu {
                             System.out.print("\nDigite o valor que deseja transferir: ");
                             valor = input.nextBigDecimal();
                             DadosDoBanco.ContaCorrente.get(i).tranferir(valor, destino);
-                            System.out.println("\nO valor " + valor + " foi transferido com sucesso para a conta: " + destino);
                             System.out.println("\nConta corrente origem: " + DadosDoBanco.ContaCorrente.get(i));
                             break;
                         }
@@ -392,7 +388,6 @@ public class MetodosMenu {
                             System.out.print("\nDigite o valor que deseja sacar: ");
                             valor = input.nextBigDecimal();
                             DadosDoBanco.ContaPoupanca.get(i).tranferir(valor, destino);
-                            System.out.println("\nO valor " + valor + " foi transferido com sucesso para a conta: " + destino);
                             System.out.println("Conta corrente origem: " + DadosDoBanco.ContaPoupanca.get(i));
                             break;
                         }
