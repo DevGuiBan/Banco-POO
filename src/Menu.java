@@ -31,7 +31,7 @@ public class Menu {
                 System.out.println("║  [3] ⇨ Movimentar Conta                      ║");
                 System.out.println("║  [4] ⇨ Editar Conta                          ║");
                 System.out.println("║  [5] ⇨ Remover Contas                        ║");
-                System.out.println("║  [6] ⇨ Sair                                  ║");
+                System.out.println("║  [0] ⇨ Sair                                  ║");
                 System.out.println("╚══════════════════════════════════════════════╝");
                 System.out.println("╔══════════════════════════════════════════════╗");
                 System.out.println("║         Selecione a tarefa desejada...       ║");
@@ -57,7 +57,7 @@ public class Menu {
                     case 5:
                         exibirMenuRemoverContas();
                         break;
-                    case 6:
+                    case 0:
                         break;
                     default:
                         throw new MenuException("Opção digitada errada, tente novamente!");
@@ -69,7 +69,7 @@ public class Menu {
             } catch (MenuException e) {
                 System.out.println("Erro: " + e.getMessage());
             }
-        } while (escolha != 6);
+        } while (escolha != 0);
         input.close();
     }
 
@@ -85,7 +85,7 @@ public class Menu {
                 System.out.println("╠══════════════════════════════════════════════╣");
                 System.out.println("║  [1] ⇨ Adicionar Conta Corrente              ║");
                 System.out.println("║  [2] ⇨ Adicionar Conta Poupança              ║");
-                System.out.println("║  [3] ⇨ Sair                                  ║");
+                System.out.println("║  [0] ⇨ Sair                                  ║");
                 System.out.println("╚══════════════════════════════════════════════╝");
                 System.out.println("╔══════════════════════════════════════════════╗");
                 System.out.println("║         Selecione a tarefa desejada...       ║");
@@ -102,7 +102,7 @@ public class Menu {
                     case 2:
                         banco.captarContaParaOBanco("poupanca");
                         break;
-                    case 3:
+                    case 0:
                         break;
                     default:
                         throw new MenuException("Opção digitada errada, tente novamente!");
@@ -114,7 +114,7 @@ public class Menu {
             } catch (MenuException e) {
                 System.out.println("Erro: " + e.getMessage());
             }
-        } while (escolha != 3);
+        } while (escolha != 0);
     }
 
     public static void exibirMenuListar() {
@@ -130,7 +130,7 @@ public class Menu {
                 System.out.println("║  [1] ⇨ Listar Todas as Contas                ║");
                 System.out.println("║  [2] ⇨ Listar Conta Corrente                 ║");
                 System.out.println("║  [3] ⇨ Listar Conta Poupança                 ║");
-                System.out.println("║  [4] ⇨ Sair                                  ║");
+                System.out.println("║  [0] ⇨ Sair                                  ║");
                 System.out.println("╚══════════════════════════════════════════════╝");
                 System.out.println("╔══════════════════════════════════════════════╗");
                 System.out.println("║         Selecione a tarefa desejada...       ║");
@@ -150,7 +150,7 @@ public class Menu {
                     case 3:
                         banco.exibirContaPoupanca();
                         break;
-                    case 4:
+                    case 0:
                         break;
                     default:
                         throw new MenuException("Opção digitada errada, tente novamente!");
@@ -162,7 +162,7 @@ public class Menu {
             } catch (MenuException e) {
                 System.out.println("Erro: " + e.getMessage());
             }
-        } while (escolha != 4);
+        } while (escolha != 0);
     }
 
     public static void exibirMenuRemoverContas() {
@@ -177,7 +177,7 @@ public class Menu {
                 System.out.println("╠══════════════════════════════════════════════╣");
                 System.out.println("║  [1] ⇨ Remover Conta Corrente                ║");
                 System.out.println("║  [2] ⇨ Remover Conta Poupança                ║");
-                System.out.println("║  [3] ⇨ Sair                                  ║");
+                System.out.println("║  [0] ⇨ Sair                                  ║");
                 System.out.println("╚══════════════════════════════════════════════╝");
                 System.out.println("╔══════════════════════════════════════════════╗");
                 System.out.println("║         Selecione a tarefa desejada...       ║");
@@ -194,7 +194,7 @@ public class Menu {
                     case 2:
                         banco.removerConta("poupanca");
                         break;
-                    case 3:
+                    case 0:
                         break;
                     default:
                         throw new MenuException("Opção digitada errada, tente novamente!");
@@ -206,7 +206,7 @@ public class Menu {
             } catch (MenuException e) {
                 System.out.println("Erro: " + e.getMessage());
             }
-        } while (escolha != 3);
+        } while (escolha != 0);
     }
 
     public static void exibirMenuTipodeContaPraEdicao() {
@@ -221,7 +221,7 @@ public class Menu {
                 System.out.println("╠══════════════════════════════════════════════╣");
                 System.out.println("║  [1] ⇨ Editar Conta Corrente                 ║");
                 System.out.println("║  [2] ⇨ Editar Conta Poupança                 ║");
-                System.out.println("║  [3] ⇨ Sair                                  ║");
+                System.out.println("║  [0] ⇨ Sair                                  ║");
                 System.out.println("╚══════════════════════════════════════════════╝");
                 System.out.println("╔══════════════════════════════════════════════╗");
                 System.out.println("║         Selecione a tarefa desejada...       ║");
@@ -238,7 +238,7 @@ public class Menu {
                     case 2:
                         exibirMenuEditarConta("poupanca");
                         break;
-                    case 3:
+                    case 0:
                         break;
                     default:
                         throw new MenuException("Opção digitada errada, tente novamente!");
@@ -250,7 +250,7 @@ public class Menu {
             } catch (MenuException e) {
                 System.out.println("Erro: " + e.getMessage());
             }
-        } while (escolha != 3);
+        } while (escolha != 0);
     }
 
     public static void exibirMenuEditarConta(String tipoDeConta) {
@@ -265,7 +265,7 @@ public class Menu {
                 System.out.println("╠══════════════════════════════════════════════╣");
                 System.out.println("║  [1] ⇨ Editar Nome                           ║");
                 System.out.println("║  [2] ⇨ Editar Email                          ║");
-                System.out.println("║  [3] ⇨ Sair                                  ║");
+                System.out.println("║  [0] ⇨ Sair                                  ║");
                 System.out.println("╚══════════════════════════════════════════════╝");
                 System.out.println("╔══════════════════════════════════════════════╗");
                 System.out.println("║         Selecione a tarefa desejada...       ║");
@@ -282,7 +282,7 @@ public class Menu {
                     case 2:
                         banco.editarConta(tipoDeConta, "email");
                         break;
-                    case 3:
+                    case 0:
                         break;
                     default:
                         throw new MenuException("Opção digitada errada, tente novamente!");
@@ -294,7 +294,7 @@ public class Menu {
             } catch (MenuException e) {
                 System.out.println("Erro: " + e.getMessage());
             }
-        } while (escolha != 3);
+        } while (escolha != 0);
     }
 
     public static void exibirMenuTipodeContaPraMovimentacao() {
@@ -309,7 +309,7 @@ public class Menu {
                 System.out.println("╠══════════════════════════════════════════════╣");
                 System.out.println("║  [1] ⇨ Conta Corrente                        ║");
                 System.out.println("║  [2] ⇨ Conta Poupança                        ║");
-                System.out.println("║  [3] ⇨ Sair                                  ║");
+                System.out.println("║  [0] ⇨ Sair                                  ║");
                 System.out.println("╚══════════════════════════════════════════════╝");
                 System.out.println("╔══════════════════════════════════════════════╗");
                 System.out.println("║         Selecione a tarefa desejada...       ║");
@@ -326,7 +326,7 @@ public class Menu {
                     case 2:
                         exibirMenuMovimentarConta("poupanca");
                         break;
-                    case 3:
+                    case 0:
                         break;
                     default:
                         throw new MenuException("Opção digitada errada, tente novamente!");
@@ -338,7 +338,7 @@ public class Menu {
             } catch (MenuException e) {
                 System.out.println("Erro: " + e.getMessage());
             }
-        } while (escolha != 3);
+        } while (escolha != 0);
     }
 
     public static void exibirMenuMovimentarConta(String tipoDeConta) {
@@ -354,7 +354,7 @@ public class Menu {
                 System.out.println("║  [1] ⇨ Depositar                             ║");
                 System.out.println("║  [2] ⇨ Sacar                                 ║");
                 System.out.println("║  [3] ⇨ Transferir                            ║");
-                System.out.println("║  [4] ⇨ Sair                                  ║");
+                System.out.println("║  [0] ⇨ Sair                                  ║");
                 System.out.println("╚══════════════════════════════════════════════╝");
                 System.out.println("╔══════════════════════════════════════════════╗");
                 System.out.println("║         Selecione a tarefa desejada...       ║");
@@ -374,7 +374,7 @@ public class Menu {
                     case 3:
                         banco.realizarOperacao(tipoDeConta, "transferir");
                         break;
-                    case 4:
+                    case 0:
                         break;
                     default:
                         throw new MenuException("Opção digitada errada, tente novamente!");
@@ -386,7 +386,7 @@ public class Menu {
             } catch (MenuException e) {
                 System.out.println("Erro: " + e.getMessage());
             }
-        } while (escolha != 4);
+        } while (escolha != 0);
     }
 
     public static String exibirMenuTipodeConta() {
