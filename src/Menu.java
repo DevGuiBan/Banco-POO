@@ -29,7 +29,7 @@ public class Menu {
                 System.out.println("║  [1] ⇨ Adicionar Conta                       ║");
                 System.out.println("║  [2] ⇨ Listar Contas                         ║");
                 System.out.println("║  [3] ⇨ Movimentar Conta                      ║");
-                System.out.println("║  [4] ⇨ Editar Cliente                        ║");
+                System.out.println("║  [4] ⇨ Editar Conta                          ║");
                 System.out.println("║  [5] ⇨ Remover Contas                        ║");
                 System.out.println("║  [6] ⇨ Sair                                  ║");
                 System.out.println("╚══════════════════════════════════════════════╝");
@@ -388,4 +388,42 @@ public class Menu {
             }
         } while (escolha != 4);
     }
+
+    public static String exibirMenuTipodeConta() {
+
+        Scanner input = new Scanner(System.in);
+        int escolha = 0;
+
+        do {
+            try {
+                System.out.println("╔══════════════════════════════════════════════╗");
+                System.out.println("║          TIPO DE CONTA PRA MOVITAÇÃO         ║");
+                System.out.println("╠══════════════════════════════════════════════╣");
+                System.out.println("║  [1] ⇨ Conta Corrente                        ║");
+                System.out.println("║  [2] ⇨ Conta Poupança                        ║");
+                System.out.println("╚══════════════════════════════════════════════╝");
+                System.out.println("╔══════════════════════════════════════════════╗");
+                System.out.println("║         Selecione a tarefa desejada...       ║");
+                System.out.println("╚══════════════════════════════════════════════╝");
+                System.out.print(">>> Input: ");
+
+                escolha = input.nextInt();
+                input.nextLine();
+
+                return switch (escolha) {
+                    case 1 -> "corrente";
+                    case 2 -> "poupanca";
+                    default -> throw new MenuException("Opção digitada errada, tente novamente!");
+                };
+
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada inválida. Por favor, insira um número inteiro.");
+                input.nextLine();
+            } catch (MenuException e) {
+                System.out.println("Erro: " + e.getMessage());
+            }
+        } while (escolha != 3);
+        return "";
+    }
+
 }

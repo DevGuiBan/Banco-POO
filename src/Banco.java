@@ -199,11 +199,12 @@ public class Banco {
                 } else if (operacao.equals("transferir")) {
                     System.out.println("Digite o CPF da conta de destino:");
                     String cpfDestino = sc.nextLine();
+                    String tipoDeContaDestino = Menu.exibirMenuTipodeConta();
                     System.out.println("Digite o valor a transferir:");
                     BigDecimal valor = sc.nextBigDecimal();
                     sc.nextLine();
 
-                    Conta contaDestino = buscarContaPorCpfETipo(cpfDestino, tipoDeConta);
+                    Conta contaDestino = buscarContaPorCpfETipo(cpfDestino, tipoDeContaDestino);
 
                     if (contaDestino != null) {
                         conta.transferir(contaDestino, valor);
