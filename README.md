@@ -29,7 +29,11 @@ Este projeto é uma aplicação de sistema bancário que permite gerenciar usuá
 
 ## Como Executar
 
-Clone o projeto e compile os arquivos Java:
+Clone o projeto e compile os arquivos Java, certificando-se que todos as dependências estão instaladas:
+
+#### Dependências:
+- IDE
+- JDK
 
 No escolha o diretório e com o terminal utilize o comando:
 ```
