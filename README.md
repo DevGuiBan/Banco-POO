@@ -31,14 +31,15 @@ Este projeto é uma aplicação de sistema bancário que permite gerenciar usuá
 
 Clone o projeto e compile os arquivos Java, certificando-se que todos as dependências estão instaladas:
 
-#### Dependências:
+#### Dependências necessárias:
 - IDE
 - JDK
 
-No escolha o diretório e com o terminal utilize o comando:
+Escolha o diretório e com o terminal utilize o comando:
 ```
 git clone https://github.com/DevGuiBan/Banco-POO.git
 ```
+Ou baixe diretamente o arquivo zip.
 
 ## Equipe
 
